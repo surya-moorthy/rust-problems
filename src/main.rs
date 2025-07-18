@@ -1,56 +1,47 @@
-struct Rect {
-    width : i32,
-    height : i32
+
+
+// Option and Result enum
+
+// return null , none , nil --> Option
+// error handling --> Result
+
+use std::{fmt::Error, fs};
+
+
+fn find_first_a(s : String) -> Option<i32> {
+   for (index,char) in s.chars().enumerate() { 
+     if char  == 'a'{
+        return Some(index as i32);
+   };
+}
+ return None;
 }
 
-impl Rect {
-    fn area(&self) -> i32 {
-        return self.height * self.width;
+fn read_file(filepath : String) -> Result<String,Error> {
+  let greeting_sir = fs::read_to_string(filepath);
+
+  match greeting_sir {
+    Ok(string) => {
+        println!("{}",string);
+      Ok(string)
+     },
+    Err(err) => {
+        println!("there is a problem while accessing the file : {}",err);
+       Ok(err.to_string())
     }
-
-    fn perimeter(&self) -> i32 {
-        return 2*(self.height + self.width);
-    }
-
-    fn debugging() -> i32 {
-        return 1;
-    }
+  }
 }
 
-enum  Direction {
-    North,
-    South,
-    East,
-    West
-}
-
-enum Shape {
-    Rect(f64,f64),
-    Circle(f64)
-}
-
-fn calculate_area(shape : Shape) -> f64 {
-    let area = match shape {
-        Shape::Circle(r) => 3.14 * r * r,
-        Shape::Rect(a,b ) => a*b
-    };
-    return area
-}
 
 fn main() {
-    let r = Rect {
-        width : 10,
-        height : 5
-    };
-    println!("{} \n {} \n {}",r.area(),r.perimeter(),Rect::debugging());
-
-    let direction = Direction::North;
-    match direction {
-        Direction::East => {println!("the direction is east")},
-        Direction::West => {println!("the direction is west")},
-        Direction::North => {println!("the direction is north")},
-        Direction::South => {println!("the direction is south")}
-    };
-
+   let index = find_first_a("hello world".to_string());
+   match index {
+      Some(a) => {
+        println!("the index is {}",a);
+      }
+      None => {
+        println!("No 'a' in the given string");
+      }
+   }
 
 }
