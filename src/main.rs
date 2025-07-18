@@ -1,25 +1,8 @@
 fn main() {
-  let ans = fib(3);
-  println!("ans is {}",ans);
+  let string = String::from("value");
+  let ans = get_string_length(&string);
 }
 
-fn fib(num : i32 ) -> i32 {
-    let mut first = 0;
-    let mut second = 1;
-
-    if num == 0 {
-        return  first;
-    };
-
-    if num == 1 {
-        return second;
-    };
-
-    for _ in 0..(num - 1) {
-        let temp = second;
-        second = second + first;
-        first = temp;
-    };
-
-    return second;
+fn get_string_length(s : &str) -> usize {
+    s.chars().count()
 }
