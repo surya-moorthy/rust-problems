@@ -1,8 +1,19 @@
-fn main() {
-  let string = String::from("value");
-  let ans = get_string_length(&string);
+#[derive(Debug)]
+struct User {
+    name : String,
+    last_name : String,
+    age : u32
 }
 
-fn get_string_length(s : &str) -> usize {
-    s.chars().count()
+fn main() {
+   
+   let user1 = User {
+     name : "Harkirat".to_string(),
+     last_name : "Singh".to_string(),
+     age : 19
+   };
+
+   println!("{:?}",user1);
+
 }
+
